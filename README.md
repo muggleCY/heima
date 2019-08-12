@@ -24,6 +24,30 @@
 4.使用v-for循环渲染每个item
 ##六宫格图标
 1.如果需要用自己的图标，只需要在当前的属性下设置img的大小
+
+##改造新闻资讯路由链接
+1.新闻资讯页面制作
+    +绘制界面
+    +获取数据
+        在main.js中配置
+        import axios from 'axios'
+        axios.defaults.baseURL = '根路径'
+        Vue.prototype.axios = axios
+        然后配置到Vue原型上
+        this.axios.get('/test/1').then(function (response) {}）
+    +渲染
+2.新闻资讯列表点击跳转到新闻详情
+    +获取列表id，rink-router需要跳转到有id的详情页面，属性绑定
+    +路由链接的  :id
+    +详情页面获取id
+      如果没有?   this.$route.params.id
+      如果有      this.$route.query.id
+3.新闻详情界面
+    +scope 如果内容中有图片的话 那么需要设置img为100%并且把scope去掉 
+        但是可能会产生污染，需要scss
+4.评论子组件
+    +获取到的数据都显示在页面中
+    +加载更多让pageIndex++，获取更多且不覆盖，concat方法拼接
 ``` bash
 # install dependencies
 npm install

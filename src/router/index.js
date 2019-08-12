@@ -5,6 +5,8 @@ import Homecontainer from '@/components/tabbar/homecontainer.vue'
 import ContactContainer from '@/components/tabbar/contactcontainer.vue'
 import CatrContainer from '@/components/tabbar/cartcontainer.vue'
 import SearchContainer from '@/components/tabbar/searchcontainer.vue'
+import NewList from '@/components/news/newsList.vue'
+import NewsInfo from '@/components/news/newsInfo.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -31,6 +33,14 @@ export default new Router({
     },{
       path:'/',
       redirect:'/home'
+    },{
+      path: '/home/newlist',
+      name: 'NewList',
+      component: NewList
+    },{
+      path: '/home/newsinfo/:id',
+      name: 'NewsInfo',
+      component: NewsInfo
     }
   ],
   linkActiveClass: 'mui-active',
