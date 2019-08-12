@@ -48,6 +48,10 @@
 4.评论子组件
     +获取到的数据都显示在页面中
     +加载更多让pageIndex++，获取更多且不覆盖，concat方法拼接
+    +发表评论
+        把文本框做双向绑定
+        post提交数据（请求的url地址，提交的数据对象，数据格式JSON
+        
 ``` bash
 # install dependencies
 npm install

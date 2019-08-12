@@ -2,8 +2,8 @@
   <div class="cmt-container">
     <h3>发表评论</h3>
     <hr />
-    <textarea placeholder="请输入要吐槽的内容（不能超过100字）" maxlength="100"></textarea>
-    <mt-button type="primary" size="large">发表评论</mt-button>
+    <textarea placeholder="请输入要吐槽的内容（不能超过100字）" maxlength="100" v-model="msg"></textarea>
+    <mt-button type="primary" size="large"  @click="postComment">发表评论</mt-button>
 
     <div class="cmt-list" v-for="(item,index) in comments" :key="item.id">
       <div class="cmt-item">
@@ -19,7 +19,8 @@ export default {
   data() {
     return{
         pageIndex: 1,
-        comments: []
+        comments: [],
+        msg: ""
       };
   },
   created(){
@@ -28,7 +29,19 @@ export default {
   methods: {
     moreComment(){
         this.pageIndex++;
-        this.getComment()
+        this.getComment();
+    },
+    postComment(){
+        this.axios.post("http://www.liulongbin.top:3005/api/postcomment/"+this.$route.params.id,{ content:this.msg },{emulateJSON : true})
+        .then((res)=>{
+            var cmt = {
+                user_name: '匿名用户',
+                add_time:Date.now(),
+                content: this.msg
+            };
+            this.comments.unshift(cmt);
+            this.msg = "";
+        })
     },
     getComment() {
         var num = parseInt(this.id)+42;
